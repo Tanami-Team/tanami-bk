@@ -162,7 +162,7 @@ class ProjectSeeder extends Seeder
                         'ar'=>'القوائم المالية 2022م',
                         'en'=>'Financial statements',
                     ],
-                    'file'=>'1.png',
+                    'file'=>'1.pdf',
                     'status'=>1,
                     'project_id'=>$project->id
                 ]);
@@ -171,7 +171,7 @@ class ProjectSeeder extends Seeder
                         'ar'=>'القوائم المالية 2022م',
                         'en'=>'Financial statements',
                     ],
-                    'file'=>'1.png',
+                    'file'=>'1.pdf',
                     'status'=>1,
                     'project_id'=>$project->id
                 ]);
@@ -180,7 +180,7 @@ class ProjectSeeder extends Seeder
                         'ar'=>'القوائم المالية 2022م',
                         'en'=>'Financial statements',
                     ],
-                    'file'=>'1.png',
+                    'file'=>'1.pdf',
                     'status'=>1,
                     'project_id'=>$project->id
                 ]);
@@ -189,7 +189,7 @@ class ProjectSeeder extends Seeder
                         'ar'=>'القوائم المالية 2022م',
                         'en'=>'Financial statements',
                     ],
-                    'file'=>'1.png',
+                    'file'=>'1.pdf',
                     'status'=>1,
                     'project_id'=>$project->id
                 ]);
