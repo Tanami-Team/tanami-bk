@@ -29,4 +29,33 @@ class Category extends Model
     public function Projects(){
         return $this->hasMany(Project::class);
     }
+
+    public function getImageAttribute($image)
+    {
+        if (!empty($image)) {
+            return asset('uploads/Category') . '/' . $image;
+        }
+        return "";
+    }
+    public function setImageAttribute($image)
+    {
+        if (is_file($image)) {
+            $imageFields = upload($image, 'Category');
+            $this->attributes['image'] = $imageFields;
+        }
+    }
+    public function getBackgroundAttribute($image)
+    {
+        if (!empty($image)) {
+            return asset('uploads/Category') . '/' . $image;
+        }
+        return "";
+    }
+    public function setBackgroundAttribute($image)
+    {
+        if (is_file($image)) {
+            $imageFields = upload($image, 'Category');
+            $this->attributes['background'] = $imageFields;
+        }
+    }
 }
