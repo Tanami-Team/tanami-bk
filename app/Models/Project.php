@@ -12,7 +12,7 @@ class Project extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public $translatable = ['name','short_description','long_description','slug'];
+    public $translatable = ['name','short_description','long_description','slug','general_objective'];
 
     protected $locale = 'ar';  // Default locale
 
@@ -25,28 +25,28 @@ class Project extends Model
     public function getImageAttribute($image)
     {
         if (!empty($image)) {
-            return asset('uploads/Client') . '/' . $image;
+            return asset('uploads/Project') . '/' . $image;
         }
         return "";
     }
     public function setImageAttribute($image)
     {
         if (is_file($image)) {
-            $imageFields = upload($image, 'Client');
+            $imageFields = upload($image, 'Project');
             $this->attributes['image'] = $imageFields;
         }
     }
     public function getBackgroundAttribute($image)
     {
         if (!empty($image)) {
-            return asset('uploads/Client') . '/' . $image;
+            return asset('uploads/Project') . '/' . $image;
         }
         return "";
     }
     public function setBackgroundAttribute($image)
     {
         if (is_file($image)) {
-            $imageFields = upload($image, 'Client');
+            $imageFields = upload($image, 'Project');
             $this->attributes['background'] = $imageFields;
         }
     }
