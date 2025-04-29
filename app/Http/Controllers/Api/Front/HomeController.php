@@ -110,7 +110,7 @@ class HomeController extends Controller
             return msg(false, $validator->errors()->first(), validation());
         }
         $data['category'] = CategoryResource::make( Category::findOrFail($request->category_id) );
-        $data['category_slider'] = CategoryImagesResource::make( CategoryImage::where('category_id',$request->category_id)->get() );
+        $data['category_slider'] = CategoryImagesResource::collection( CategoryImage::where('category_id',$request->category_id)->get() );
         $data['projects'] = ProjectsResource::collection( Project::where('category_id',$request->category_id)->where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
