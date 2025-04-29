@@ -22,6 +22,7 @@ use App\Models\Category;
 use App\Models\CategoryImage;
 use App\Models\Goals;
 use App\Models\GovernanceFile;
+use App\Models\Member;
 use App\Models\Partner;
 use App\Models\Project;
 use App\Models\ProjectActivite;
@@ -87,7 +88,7 @@ class HomeController extends Controller
     public function members()
     {
 
-        $data['members'] = MembersResource::collection( members::paginate(10) )->response()->getData(true);
+        $data['members'] = MembersResource::collection( Member::where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
@@ -95,7 +96,7 @@ class HomeController extends Controller
     public function governance()
     {
 
-        $data['members'] = GovernanceFileResource::collection( GovernanceFile::where('status',1)->paginate(10) )->response()->getData(true);
+        $data['GovernanceFile'] = GovernanceFileResource::collection( GovernanceFile::where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
@@ -108,9 +109,9 @@ class HomeController extends Controller
         if (!is_array($validator) && $validator->fails()) {
             return msg(false, $validator->errors()->first(), validation());
         }
-        $data['category'] = CategoryImagesResource::make( CategoryImage::where('category_id',$id)->get() );
-        $data['category_slider'] = CategoryResource::make( Category::findOrFail($id) );
-        $data['projects'] = ProjectsResource::collection( Project::where('category_id',$id)->where('status',1)->paginate(10) )->response()->getData(true);
+        $data['category'] = CategoryResource::make( Category::findOrFail($request->category_id) );
+        $data['category_slider'] = CategoryImagesResource::make( CategoryImage::where('category_id',$request->category_id)->get() );
+        $data['projects'] = ProjectsResource::collection( Project::where('category_id',$request->category_id)->where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
