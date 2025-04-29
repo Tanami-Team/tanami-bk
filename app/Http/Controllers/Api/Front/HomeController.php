@@ -20,6 +20,7 @@ use App\Http\Resources\ProjectFileResource;
 use App\Models\About;
 use App\Models\Category;
 use App\Models\CategoryImage;
+use App\Models\Client;
 use App\Models\Goals;
 use App\Models\GovernanceFile;
 use App\Models\Member;
@@ -69,7 +70,7 @@ class HomeController extends Controller
     {
         $data['pages'] = PageResource::make( About::findOrFail(1) );
         $data['goals'] = GoalsResource::collection( Goals::where('status',1)->limit(10)->get() );
-        $data['clients'] = PartnerResource::collection( Goals::where('status',1)->get() );
+        $data['clients'] = PartnerResource::collection( Client::where('status',1)->get() );
         $data['Partners'] = PartnerResource::collection( Partner::where('status',1)->get() );
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
