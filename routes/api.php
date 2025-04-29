@@ -12,11 +12,11 @@ Route::prefix('api')->middleware([\App\Http\Middleware\Lang::class])->group(func
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/header', [HomeController::class, 'header']);
     Route::get('/footer', [HomeController::class, 'footer']);
-    Route::get('/about', [HomeController::class, '/{id}']);
-    Route::get('/members', [HomeController::class, 'members']);
-    Route::get('/governance', [HomeController::class, 'governance']);
-    Route::get('/category/{id}', [HomeController::class, 'category']);
-    Route::get('/Project', [HomeController::class, 'Project']);
+    Route::get('/about', [HomeController::class, 'about']);
+        Route::get('/members', [HomeController::class, 'members']);
+        Route::get('/governance', [HomeController::class, 'governance']);
+    Route::get('/category', [HomeController::class, 'category']);
+    Route::get('/Project}', [HomeController::class, 'Project']);
 
 });
 

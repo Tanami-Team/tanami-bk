@@ -25,6 +25,7 @@ use App\Models\Project;
 use App\Models\Setting;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -95,12 +96,30 @@ class HomeController extends Controller
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
     }
-    public function category($id)
+    public function category(Request $request)
     {
-
+        $validator = Validator::make($request->all(), [
+            'category_id' => 'required|exists:categories,id',
+        ]);
+        if (!is_array($validator) && $validator->fails()) {
+            return msg(false, $validator->errors()->first(), validation());
+        }
         $data['category'] = CategoryImagesResource::make( CategoryImage::where('category_id',$id)->get() );
         $data['category_slider'] = CategoryResource::make( Category::findOrFail($id) );
         $data['projects'] = ProjectsResource::collection( Project::where('category_id',$id)->where('status',1)->paginate(10) )->response()->getData(true);
+
+        return msgdata(true, trans('lang.data_display_success'), $data, success());
+
+    }
+    public function Project(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'project_id' => 'required|exists:projects,id',
+        ]);
+        if (!is_array($validator) && $validator->fails()) {
+            return msg(false, $validator->errors()->first(), validation());
+        }
+        $data['project'] = ProjectsResource::make( Project::where('id',$request->project_id)->where('status',1)->first() )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
