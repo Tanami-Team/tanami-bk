@@ -15,6 +15,8 @@ use App\Http\Resources\GovernanceFileResource;
 use App\Http\Resources\ListResource;
 use App\Http\Resources\MembersResource;
 use App\Http\Resources\PageResource;
+use App\Http\Resources\ProjectActivitesResource;
+use App\Http\Resources\ProjectFileResource;
 use App\Models\About;
 use App\Models\Category;
 use App\Models\CategoryImage;
@@ -22,6 +24,8 @@ use App\Models\Goals;
 use App\Models\GovernanceFile;
 use App\Models\Partner;
 use App\Models\Project;
+use App\Models\ProjectActivite;
+use App\Models\ProjectFile;
 use App\Models\Setting;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -120,6 +124,8 @@ class HomeController extends Controller
             return msg(false, $validator->errors()->first(), validation());
         }
         $data['project'] = ProjectsResource::make( Project::where('id',$request->project_id)->where('status',1)->first() )->response()->getData(true);
+        $data['project_activites'] = ProjectActivitesResource::collection( ProjectActivite::where('project_id',$request->project_id)->where('status',1)->get() )->response()->getData(true);
+        $data['project_files'] = ProjectFileResource::collection( ProjectFile::where('project_id',$request->project_id)->where('status',1)->get() )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 

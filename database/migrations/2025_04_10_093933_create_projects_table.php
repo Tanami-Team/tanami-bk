@@ -17,6 +17,7 @@ return new class extends Migration
             $table->json('slug');
             $table->json('short_description');
             $table->json('long_description');
+            $table->json('general_objective')->nullable();
             $table->integer('price');
             $table->boolean('status')->default(true);
             $table->boolean('available')->default(true);
