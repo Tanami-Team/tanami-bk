@@ -16,7 +16,7 @@ Route::prefix('api')->middleware([\App\Http\Middleware\Lang::class])->group(func
         Route::get('/members', [HomeController::class, 'members']);
         Route::get('/governance', [HomeController::class, 'governance']);
     Route::get('/category', [HomeController::class, 'category']);
-    Route::get('/Project}', [HomeController::class, 'Project']);
+    Route::get('/Project', [HomeController::class, 'Project']);
 
 });
 

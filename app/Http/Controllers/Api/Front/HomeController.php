@@ -88,7 +88,7 @@ class HomeController extends Controller
     public function members()
     {
 
-        $data['members'] = MembersResource::collection( Member::paginate(10) )->response()->getData(true);
+        $data['members'] = MembersResource::collection( Member::    paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
