@@ -17,10 +17,15 @@ class Lang
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has('lang')){
-            App::setLocale(session('lang'));
-        }else{
-            App::setLocale('en');
+        $languages = ['ar', 'en'];
+        $lang = request()->header('lang');
+
+        if ($lang) {
+            if (in_array($lang, $languages)) {
+                App::setLocale($lang);
+            } else {
+                App::setLocale('ar');
+            }
         }
         return $next($request);
     }
