@@ -89,7 +89,8 @@ class HomeController extends Controller
     public function members()
     {
 
-        $data['members'] = MembersResource::collection( Member::    paginate(10) )->response()->getData(true);
+        $data['pages'] = PageResource::make( About::findOrFail(1) );
+        $data['members'] = MembersResource::collection( Member::paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
@@ -97,6 +98,7 @@ class HomeController extends Controller
     public function governance()
     {
 
+        $data['pages'] = PageResource::make( About::findOrFail(1) );
         $data['GovernanceFile'] = GovernanceFileResource::collection( GovernanceFile::where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());

@@ -19,6 +19,21 @@ class MembersSeeder extends Seeder
                 'job'=>'رئيس مجلس الادارة',
                 'image'=>'1.png',
             ]);
+            Member::create([
+                'name'=>'د.فؤاد عبد الكريم العبد الكريم',
+                'job'=>'رئيس مجلس الادارة',
+                'image'=>'1.png',
+            ]);
+            Member::create([
+                'name'=>'د.فؤاد عبد الكريم العبد الكريم',
+                'job'=>'رئيس مجلس الادارة',
+                'image'=>'1.png',
+            ]);
+            Member::create([
+                'name'=>'د.فؤاد عبد الكريم العبد الكريم',
+                'job'=>'رئيس مجلس الادارة',
+                'image'=>'1.png',
+            ]);
         }
     }
 }
