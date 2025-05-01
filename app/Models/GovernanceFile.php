@@ -27,6 +27,8 @@ class GovernanceFile extends Model
         if (is_file($image)) {
             $imageFields = upload($image, 'Governance');
             $this->attributes['file'] = $imageFields;
+        }else{
+            $this->attributes['file'] = $image;
         }
     }
 }
