@@ -59,7 +59,7 @@ class HomeController extends Controller
 
     public function footer()
     {
-        $data['categories'] = ListResource::collection( Category::where('status',1)->orderBy('id','ASC')->get() );
+        $data['categories'] = CategoryResource::collection( Category::where('status',1)->With('Project')->orderBy('id','ASC')->get() );
         $data['pages'] = ListResource::collection( About::where('status',1)->orderBy('id','ASC')->get() );
         $data['settings'] = SettingResource::make( Setting::find(1) );
 
