@@ -22,5 +22,20 @@ class Setting extends Model
         // Make sure to return a valid locale string, not null
         return app()->getLocale() ?? $this->locale;
     }
-
+    public function getLogoAttribute($image)
+    {
+        if (!empty($image)) {
+            return asset('uploads/Setting') . '/' . $image;
+        }
+        return "";
+    }
+    public function setLogoAttribute($image)
+    {
+        if (is_file($image)) {
+            $imageFields = upload($image, 'Setting');
+            $this->attributes['logo'] = $imageFields;
+        } else {
+            $this->attributes['logo'] = $image;
+        }
+    }
 }
