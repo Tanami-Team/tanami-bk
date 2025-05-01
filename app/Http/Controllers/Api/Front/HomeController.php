@@ -130,7 +130,12 @@ class HomeController extends Controller
         $data['project'] = ProjectsResource::make( Project::where('id',$request->project_id)->where('status',1)->first() )->response()->getData(true);
         $data['project_activites'] = ProjectActivitesResource::collection( ProjectActivite::where('project_id',$request->project_id)->where('status',1)->get() )->response()->getData(true);
         $data['project_files'] = ProjectFileResource::collection( ProjectFile::where('project_id',$request->project_id)->where('status',1)->get() )->response()->getData(true);
-
+        $data['clients'] = PartnerResource::collection( Client::where('status',1)->get() );
+        $data['numbers'] = [
+          'clients'=> 88,
+          'companies'=>102,
+          'users'=>100,
+        ];
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
     }
