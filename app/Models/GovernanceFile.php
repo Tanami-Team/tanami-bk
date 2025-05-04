@@ -15,10 +15,10 @@ class GovernanceFile extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function getFileAttribute($image)
+    public function getFileAttribute($file)
     {
-        if (!empty($image)) {
-            return asset('uploads/Governance') . '/' . $image;
+        if (!empty($file)) {
+            return asset('uploads/Governance') . '/' . $file;
         }
         return "";
     }

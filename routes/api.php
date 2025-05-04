@@ -3,11 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Front\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::prefix('api')->middleware([\App\Http\Middleware\Lang::class])->group(function () {
+Route::middleware([\App\Http\Middleware\Lang::class])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/header', [HomeController::class, 'header']);
@@ -17,6 +14,7 @@ Route::prefix('api')->middleware([\App\Http\Middleware\Lang::class])->group(func
         Route::get('/governance', [HomeController::class, 'governance']);
     Route::get('/category', [HomeController::class, 'category']);
     Route::get('/Project', [HomeController::class, 'Project']);
+    Route::post('/store-contact', [HomeController::class, 'contact']);
 
 });
 

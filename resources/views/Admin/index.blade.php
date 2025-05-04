@@ -68,7 +68,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">{{\App\Models\User::where('user_platform','ios')->count()}}</div>
+                            <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">{{\App\Models\User::count()}}</div>
                             <div class="fw-bold text-gray-100">{{trans('lang.ios devices')}}</div>
                         </div>
                         <!--end::Body-->
@@ -88,7 +88,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{\App\Models\User::where('user_platform','android')->count()}}</div>
+                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{\App\Models\User::count()}}</div>
                             <div class="fw-bold text-white">{{trans('lang.android devices')}}</div>
                         </div>
                         <!--end::Body-->
@@ -108,7 +108,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{App\Models\Product::count()}}</div>
+                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{App\Models\Blog::count()}}</div>
                             <div class="fw-bold text-white">{{trans('lang.products')}}</div>
                         </div>
                         <!--end::Body-->
@@ -132,7 +132,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Question::count()}}</div>
+                            <div class="text-gray-900 fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Blog::count()}}</div>
                             <div class="fw-bold text-gray-400">{{trans('lang.Questions')}}</div>
                         </div>
                         <!--end::Body-->
@@ -153,7 +153,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Admin::count()}}</div>
+                            <div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Blog::count()}}</div>
                             <div class="fw-bold text-gray-100">{{trans('lang.Admins')}}</div>
                         </div>
                         <!--end::Body-->
@@ -173,7 +173,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Contact::count()}}</div>
+                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Blog::count()}}</div>
                             <div class="fw-bold text-white">{{trans('lang.Contacts')}}</div>
                         </div>
                         <!--end::Body-->
@@ -193,7 +193,7 @@
 												</svg>
 											</span>
                             <!--end::Svg Icon-->
-                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Rate::count()}}</div>
+                            <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{\App\Models\Blog::count()}}</div>
                             <div class="fw-bold text-white">{{trans('lang.Rates')}}</div>
                         </div>
                         <!--end::Body-->
@@ -225,140 +225,9 @@
                         <!--end::Body-->
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <!--begin::List Widget 4-->
-                    <div class="card card-xl-stretch mb-xl-8">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 pt-5">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder text-dark">{{trans('lang.Online Users')}}</span>
-                                <span class="text-muted mt-1 fw-bold fs-7"></span>
-                            </h3>
-                            <div class="card-toolbar">
-                            <!--begin::Menu-->
-                                <div type="button" class=" m-5 btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                               {{__('lang.Users')}}
-                                <!--end::Svg Icon-->
-                                </div>
-                                <!--begin::Menu 3-->
-                                <!--end::Menu 3-->
-                                <!--end::Menu-->
-                                <!--begin::Menu-->
-                                <div type="button" class=" m-5 btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                    {{__('lang.Guests')}}
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--begin::Menu 3-->
-                                <!--end::Menu 3-->
-                                <!--end::Menu-->
-                            </div>
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body pt-5">
-                            <!--begin::Item-->
-                            @foreach(\App\Models\Country::where('status','active')->get() as $Country)
-                                <div class="d-flex align-items-sm-center mb-7">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-50px me-5">
-													<span class="symbol-label">
-														<img src="{{$Country->image}}" class="h-50 align-self-center" alt="{{$Country->name}}">
-													</span>
-                                    </div>
-                                    <!--end::Symbol-->
-                                    <!--begin::Section-->
-                                    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
-                                        <div class="flex-grow-1 me-2">
-                                            <a href="{{url('users?is_active=1&country_id='.$Country->id)}}" class="text-gray-800 text-hover-primary fs-6 fw-bolder">{{$Country->name}}</a>
-                                            {{--                                                <span class="text-muted fw-bold d-block fs-7"></span>--}}
-                                        </div>
-                                        <span class="badge badge-light fw-bolder my-2 m-5">
-                                                {{\App\Models\User::where('country_id',$Country->id)->where('is_active',1)->count()}}</span>
-                                        <span class="badge badge-light fw-bolder my-2 m-5">
-                                                {{\App\Models\ActiveGuest::where('country_id',$Country->id)->count()}}</span>
-                                    </div>
-                                    <!--end::Section-->
-                                </div>
-                        @endforeach
-                        <!--end::Item-->
 
-                            <!--end::Item-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::List Widget 4-->
-                </div>
-
-                <div class="col-md-12">
-                    <div class="card card-xl-stretch-50 mb-5 mb-xl-8">
-                        <!--begin::Body-->
-                        <div class="card-body p-0 d-flex justify-content-between flex-column overflow-hidden">
-                            <!--begin::Hidden-->
-                            <div class="d-flex flex-stack flex-wrap flex-grow-1 px-9 pt-9 pb-3">
-                                <div class="me-2">
-                                    <span class="fw-bolder text-gray-800 d-block fs-3">{{trans('lang.Products')}}</span>
-                                    {{--                                    <span class="text-gray-400 fw-bold">{{__('lang.event')}}</span>--}}
-                                </div>
-                                <div class="fw-bolder fs-3 text-primary"></div>
-                            </div>
-                            <!--end::Hidden-->
-                            <!--begin::Chart-->
-                            <div class="mixed-widget-10-chartaa" data-kt-color="primary" style="height: 175px"></div>
-                            <!--end::Chart-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card card-xl-stretch-50 mb-5 mb-xl-8">
-                        <!--begin::Body-->
-                        <div class="card-body p-0 d-flex justify-content-between flex-column overflow-hidden">
-                            <!--begin::Hidden-->
-                            <div class="d-flex flex-stack flex-wrap flex-grow-1 px-9 pt-9 pb-3">
-                                <div class="me-2">
-                                    <span class="fw-bolder text-gray-800 d-block fs-3">{{trans('lang.Clicks Count')}}</span>
-                                                                        <div class="text-gray-400 fw-bold">
-
-                                                                        </div>
-                                </div>
-                                <div class="fw-bolder fs-3 text-primary"></div>
-                            </div>
-                            <!--end::Hidden-->
-                            <!--begin::Chart-->
-                            <div class="mixed-widget-10-chartaa2" data-kt-color="primary" style="height: 175px"></div>
-                            <!--end::Chart-->
-                        </div>
-                    </div>
-                </div>
             </div>
 
-{{--            <div class="card card-xl-stretch mb-xl-8">--}}
-{{--                <!--begin::Header-->--}}
-{{--                <div class="card-header border-0 pt-5">--}}
-{{--                    <h3 class="card-title align-items-start flex-column">--}}
-{{--                        <span class="card-label fw-bolder fs-3 mb-1">{{trans('lang.provider_requests')}}</span>--}}
-{{--                    </h3>--}}
-{{--                    <!--begin::Toolbar-->--}}
-{{--                    <div class="card-toolbar" data-kt-buttons="true">--}}
-{{--                        <h3 class="card-title align-items-start flex-column">--}}
-{{--                            <span class="card-label fw-bolder fs-3 mb-1">--}}
-{{--                                                        {{__('lang.Total')}}  :--}}
-{{--                            </span>--}}
-{{--                        </h3>--}}
-
-{{--                    </div>--}}
-{{--                    <!--end::Toolbar-->--}}
-{{--                </div>--}}
-{{--                <!--end::Header-->--}}
-{{--                <!--begin::Body-->--}}
-{{--                <div class="card-body">--}}
-{{--                    <!--begin::Chart-->--}}
-{{--                    <div id="kt_charts_widget_33_chart" style="height: 350px"></div>--}}
-{{--                    <!--end::Chart-->--}}
-{{--                </div>--}}
-{{--                <!--end::Body-->--}}
-{{--            </div>--}}
         </div>
     </div>
 
@@ -434,12 +303,6 @@
                 e &&
                 new ApexCharts(e, {
                     series: [
-                            @foreach(\App\Models\Country::where('status','active')->get() as $country)
-                        { name: "{{$country->name}}", data: [
-                                @for($x = 1;$x <= 12 ; $x++)
-                                {{\App\Models\User::where('country_id',$country->id)->whereMonth('created_at',$x)->whereYear('created_at',date('Y'))->count()}},
-                                @endfor                                    ] },
-                        @endforeach
                         { name: "الكل", data: [
                                 @for($x = 1;$x <= 12 ; $x++)
                                 {{\App\Models\User::whereMonth('created_at',$x)->whereYear('created_at',date('Y'))->count()}},
@@ -496,13 +359,6 @@
                         (a = KTUtil.getCssVariableValue("--bs-" + e)),
                         new ApexCharts(o, {
                             series: [
-                                @foreach(\App\Models\Country::all() as $country)
-                                { name: "{{$country->id}}", data: [
-                                                            @for($x = 1;$x <= 12 ; $x++)
-                                        {{\App\Models\User::where('country_id',$country->id)->whereMonth('created_at',$x)->whereYear('created_at',date('Y'))->count()}},
-                                                            @endfor                                    ] },
-                                @endforeach
-
 
                             ],
                             chart: { fontFamily: "inherit", type: "bar", height: t, toolbar: { show: !1 } },
@@ -547,12 +403,7 @@
                         (a = KTUtil.getCssVariableValue("--bs-" + e)),
                         new ApexCharts(o, {
                             series: [
-                                    @foreach(\App\Models\Country::where('status','active')->get() as $country)
-                                { name: "{{$country->name}}", data: [
-                                        @for($x = 1;$x <= 12 ; $x++)
-                                            {{\App\Models\Product::where('country_id',$country->id)->whereMonth('created_at',$x)->whereYear('created_at',date('Y'))->count()}},
-                                        @endfor                                    ] },
-                                @endforeach
+
 
 
 
@@ -599,15 +450,6 @@
                         (a = KTUtil.getCssVariableValue("--bs-" + e)),
                         new ApexCharts(o, {
                             series: [
-                                { name: "whatsapp", data: [
-                                        @for($x = 1;$x <= 12 ; $x++)
-                                            {{\App\Models\Click::where('type','whatsapp')->whereMonth('created_at',$x)->whereYear('created_at',date('Y'))->count()}},
-                                        @endfor                                    ] },
-
-                                { name: "call", data: [
-                                        @for($x = 1;$x <= 12 ; $x++)
-                                            {{\App\Models\Click::where('type','call')->whereMonth('created_at',$x)->whereYear('created_at',date('Y'))->count()}},
-                                        @endfor                                    ] },
 
                             ],
                             chart: { fontFamily: "inherit", type: "bar", height: t, toolbar: { show: !1 } },

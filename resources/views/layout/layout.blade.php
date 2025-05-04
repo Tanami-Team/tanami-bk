@@ -14,7 +14,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 <head>
     <base href="../">
-    <title> Monasba || @yield('title')
+    <title> Tanami || @yield('title')
     </title>
     <meta charset="utf-8"/>
     <meta name="description"
@@ -568,7 +568,7 @@ License: For each use you must have a valid license purchased only from above li
 top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;
 opacity: .8; filter: alpha(opacity=70);display:none">
     <p style="position: absolute; top: 30%; left: 45%; color: White;">
-        <img src="{{asset('https://monsbah.afkarq8.com/logo/logo.png')}}">
+        <img src="{{asset('logo/logo.png')}}">
     </p>
 
 

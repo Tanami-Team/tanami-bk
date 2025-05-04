@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Front\ContactRequest;
 use App\Http\Resources\Api\Front\AboutResource;
 use App\Http\Resources\Api\Front\CategoryResource;
 use App\Http\Resources\Api\Front\PartnerResource;
@@ -21,6 +22,7 @@ use App\Models\About;
 use App\Models\Category;
 use App\Models\CategoryImage;
 use App\Models\Client;
+use App\Models\Contact;
 use App\Models\Goals;
 use App\Models\GovernanceFile;
 use App\Models\Member;
@@ -89,7 +91,7 @@ class HomeController extends Controller
     public function members()
     {
 
-        $data['pages'] = PageResource::make( About::findOrFail(1) );
+        $data['pages'] = PageResource::make( About::findOrFail(3) );
         $data['members'] = MembersResource::collection( Member::paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
@@ -98,7 +100,7 @@ class HomeController extends Controller
     public function governance()
     {
 
-        $data['pages'] = PageResource::make( About::findOrFail(1) );
+        $data['pages'] = PageResource::make( About::findOrFail(2) );
         $data['GovernanceFile'] = GovernanceFileResource::collection( GovernanceFile::where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
@@ -114,7 +116,6 @@ class HomeController extends Controller
         }
         $data['category'] = CategoryResource::make( Category::findOrFail($request->category_id) );
         $data['category_slider'] = CategoryImagesResource::collection( CategoryImage::where('category_id',$request->category_id)->get() );
-        $data['projects'] = ProjectsResource::collection( Project::where('category_id',$request->category_id)->where('status',1)->paginate(10) )->response()->getData(true);
 
         return msgdata(true, trans('lang.data_display_success'), $data, success());
 
@@ -137,6 +138,18 @@ class HomeController extends Controller
           'users'=>100,
         ];
         return msgdata(true, trans('lang.data_display_success'), $data, success());
+
+    }
+    public function store(ContactRequest $request): JsonResponse
+    {
+        $contact = Contact::create($request->validated());
+
+        return msgdata(true, trans('lang.data_display_success'), $contact, success());
+
+    }
+
+    public function contact(Request $request)
+    {
 
     }
 }

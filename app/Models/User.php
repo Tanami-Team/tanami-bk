@@ -34,6 +34,12 @@ class User extends Authenticatable implements  JWTSubject
         'remember_token',
     ];
 
+    public function setPasswordAttribute($password)
+    {
+        if (!empty($password)) {
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
     /**
      * Get the attributes that should be cast.
      *
